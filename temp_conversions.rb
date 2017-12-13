@@ -1,12 +1,15 @@
 def convert(temp, measure="F")
 	return "Temperature must be an interger" unless temp.class == Fixnum
+	return "Temperature below Absolute Zero" if below_absolute_zero?(temp,measure)
 	if (measure == "F")
-		return "Temperature below Absolute Zero" if temp < -474
 		5 * (temp - 32)/9
 	else
-		return "Temperature below Absolute Zero" if temp < -270
 		((temp*9)/5)+32
 	end
+end
+
+def below_absolute_zero?(temp, measure)
+	(temp < -454 and measure == "F") or (temp < -270 and measure == "C")
 end
 
 puts convert(32)
